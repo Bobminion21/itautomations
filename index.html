@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Automations | AI-Powered Business Automation</title>
+<style>
+/* ===== RESET & BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;color:#e0e0e0;background:#0a0a0f;line-height:1.6}
+a{color:#64b5f6;text-decoration:none;transition:color .2s}
+a:hover{color:#90caf9}
+img{max-width:100%}
+
+/* ===== LAYOUT ===== */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+.section-alt{background:#0f1019}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(100,181,246,.1);padding:16px 0}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.nav-brand{font-size:20px;font-weight:700;color:#fff;letter-spacing:-.5px}
+.nav-brand span{color:#64b5f6}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:#aaa;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:1px;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#64b5f6}
+.mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+
+/* ===== HERO ===== */
+.hero{padding:160px 0 100px;text-align:center;background:linear-gradient(180deg,#0d1117 0%,#0a0a0f 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(100,181,246,.06) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-1px}
+.hero h1 span{background:linear-gradient(135deg,#64b5f6,#42a5f5,#1e88e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(16px,2vw,20px);color:#888;max-width:600px;margin:0 auto 32px}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 32px;border-radius:8px;font-weight:600;font-size:15px;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,#1e88e5,#42a5f5);color:#fff;box-shadow:0 4px 20px rgba(30,136,229,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(30,136,229,.4);color:#fff}
+.btn-outline{background:transparent;color:#64b5f6;border:2px solid rgba(100,181,246,.3)}
+.btn-outline:hover{border-color:#64b5f6;background:rgba(100,181,246,.05);color:#64b5f6}
+
+/* ===== STATS BAR ===== */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:40px 0;text-align:center}
+.stat-item h3{font-size:clamp(28px,3vw,40px);font-weight:800;background:linear-gradient(135deg,#64b5f6,#42a5f5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-item p{font-size:13px;color:#666;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ===== SERVICES GRID ===== */
+.services-header{text-align:center;margin-bottom:48px}
+.services-header h2{font-size:clamp(28px,3vw,36px);font-weight:700;color:#fff;margin-bottom:12px}
+.services-header p{color:#888;font-size:16px;max-width:500px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{background:linear-gradient(145deg,#12121a,#16162a);border:1px solid rgba(100,181,246,.08);border-radius:16px;padding:32px;transition:all .3s}
+.service-card:hover{border-color:rgba(100,181,246,.2);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.service-icon{width:48px;height:48px;border-radius:12px;background:rgba(100,181,246,.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.service-card h3{font-size:18px;color:#fff;margin-bottom:8px}
+.service-card p{color:#888;font-size:14px;line-height:1.7}
+
+/* ===== PRODUCTS ===== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px}
+.product-card{background:linear-gradient(145deg,#12121a,#16162a);border:1px solid rgba(100,181,246,.08);border-radius:16px;overflow:hidden;transition:all .3s}
+.product-card:hover{border-color:rgba(100,181,246,.2);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.product-header{padding:24px 24px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.product-header h3{font-size:18px;color:#fff;flex:1}
+.price-tag{background:linear-gradient(135deg,#1e88e5,#42a5f5);color:#fff;padding:6px 14px;border-radius:20px;font-size:14px;font-weight:700;white-space:nowrap;margin-left:12px}
+.product-body{padding:16px 24px 24px}
+.product-body p{color:#888;font-size:14px;margin-bottom:16px;line-height:1.7}
+.product-features{list-style:none;margin-bottom:20px}
+.product-features li{color:#aaa;font-size:13px;padding:5px 0;padding-left:20px;position:relative}
+.product-features li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:#42a5f5}
+.product-tech{font-size:12px;color:#555;border-top:1px solid rgba(255,255,255,.05);padding-top:12px}
+
+/* ===== TEMPLATES SECTION ===== */
+.templates-list{display:grid;gap:16px}
+.template-item{background:linear-gradient(145deg,#12121a,#16162a);border:1px solid rgba(100,181,246,.08);border-radius:12px;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;transition:all .3s}
+.template-item:hover{border-color:rgba(100,181,246,.15)}
+.template-info h4{font-size:16px;color:#fff;margin-bottom:4px}
+.template-info p{color:#888;font-size:13px}
+.template-price{font-size:18px;font-weight:700;color:#64b5f6;white-space:nowrap;margin-left:16px}
+
+/* ===== HOW IT WORKS ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+.step{position:relative}
+.step-num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1e88e5,#42a5f5);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin:0 auto 16px}
+.step h3{font-size:16px;color:#fff;margin-bottom:8px}
+.step p{color:#888;font-size:14px}
+
+/* ===== TECH STACK ===== */
+.tech-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.tech-pill{background:rgba(100,181,246,.08);border:1px solid rgba(100,181,246,.12);padding:8px 18px;border-radius:20px;font-size:13px;color:#aaa;transition:all .2s}
+.tech-pill:hover{border-color:rgba(100,181,246,.3);color:#64b5f6}
+
+/* ===== FAQ ===== */
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.06);padding:20px 0}
+.faq-q{font-size:16px;color:#fff;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'+';font-size:20px;color:#64b5f6;transition:transform .2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{color:#888;font-size:14px;line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding-top:12px}
+
+/* ===== CTA ===== */
+.cta{text-align:center;padding:80px 0;background:linear-gradient(180deg,#0a0a0f 0%,#0d1117 50%,#0a0a0f 100%);position:relative}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(100,181,246,.06) 0%,transparent 70%);pointer-events:none}
+.cta h2{font-size:clamp(28px,3vw,36px);font-weight:700;color:#fff;margin-bottom:12px}
+.cta p{color:#888;font-size:16px;margin-bottom:28px}
+
+/* ===== FOOTER ===== */
+footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.05);text-align:center}
+footer p{color:#555;font-size:13px}
+footer a{color:#666}
+footer a:hover{color:#64b5f6}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .stats-bar{grid-template-columns:repeat(2,1fr);gap:16px}
+  .steps{grid-template-columns:1fr;gap:24px}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(10,10,15,.98);flex-direction:column;padding:20px;gap:16px;border-bottom:1px solid rgba(100,181,246,.1)}
+  .nav-links.open{display:flex}
+  .mobile-toggle{display:block}
+  .products-grid{grid-template-columns:1fr}
+  .template-item{flex-direction:column;align-items:flex-start;gap:8px}
+  .template-price{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-brand">IT<span>Automations</span></div>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#templates">Templates</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <h1>AI-Powered <span>Automation</span><br>for Your Business</h1>
+    <p>Production-grade automation solutions that eliminate repetitive work, streamline operations, and run 24/7 with zero maintenance.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn btn-primary">View Products</a>
+      <a href="#contact" class="btn btn-outline">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section-alt">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat-item"><h3>150K+</h3><p>Lines of Code Shipped</p></div>
+      <div class="stat-item"><h3>20+</h3><p>Production Scripts</p></div>
+      <div class="stat-item"><h3>24/7</h3><p>System Uptime</p></div>
+      <div class="stat-item"><h3>40+</h3><p>Bot Commands Built</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <h2>What We Build</h2>
+      <p>Automation solutions tailored to your workflow.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#9881;</div>
+        <h3>Workflow Automation</h3>
+        <p>Custom Google Apps Script solutions that automate data entry, reporting, email workflows, and spreadsheet processes. Stop doing manually what a script can handle in seconds.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128225;</div>
+        <h3>Bot Development</h3>
+        <p>Telegram and chat bot systems for remote monitoring, team notifications, and command-and-control interfaces. Manage your operations from your phone, anywhere.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128202;</div>
+        <h3>Operations Dashboards</h3>
+        <p>Professional tracking systems for sales, KPIs, team performance, and business metrics. Auto-updating charts, color-coded alerts, and scheduled email reports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-alt">
+  <div class="container">
+    <div class="services-header">
+      <h2>How It Works</h2>
+      <p>Simple process, professional results.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Tell Us What You Need</h3>
+        <p>Describe the problem or process you want automated. We'll assess feasibility and provide a clear scope and quote.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Build It</h3>
+        <p>Using AI-assisted development, we deliver production-quality solutions faster than traditional development timelines.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Deploy &amp; Support</h3>
+        <p>We deliver the finished product with full documentation and provide setup support to get you running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <div class="services-header">
+      <h2>Digital Products</h2>
+      <p>Production-tested tools ready to deploy today.</p>
+    </div>
+    <div class="products-grid">
+
+      <!-- ServerGuard Pro -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3>ServerGuard Pro</h3>
+          <span class="price-tag">$19.99</span>
+        </div>
+        <div class="product-body">
+          <p>Complete remote server management system powered by Telegram. 20 automation scripts, 40+ commands, full control from your phone.</p>
+          <ul class="product-features">
+            <li>Remote control via Telegram (start, stop, restart, status)</li>
+            <li>Native RCON binary protocol implementation</li>
+            <li>Automated crash detection and recovery</li>
+            <li>Real-time log monitoring with keyword alerts</li>
+            <li>Daily and weekly analytics reports</li>
+            <li>Automated backup with rotation and compression</li>
+          </ul>
+          <div class="product-tech">PowerShell &bull; Telegram Bot API &bull; RCON Protocol &bull; Task Scheduler</div>
+        </div>
+      </div>
+
+      <!-- QSR Dashboard -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3>QSR Operations Dashboard</h3>
+          <span class="price-tag">$29 - $39</span>
+        </div>
+        <div class="product-body">
+          <p>Professional Google Sheets dashboard for restaurant operations. Track sales, speed of service, labor, food cost, and customer satisfaction.</p>
+          <ul class="product-features">
+            <li>5 pre-built sheets with professional formatting</li>
+            <li>Quick Data Entry dialog for fast input</li>
+            <li>3 report types: daily, weekly, monthly</li>
+            <li>Color-coded KPIs (green/yellow/red)</li>
+            <li>Auto-updating charts and email reports</li>
+            <li>Works on mobile via Google Sheets app</li>
+          </ul>
+          <div class="product-tech">Google Apps Script &bull; Google Sheets &bull; Zero Dependencies</div>
+        </div>
+      </div>
+
+      <!-- Sola -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3>Sola Digital Signage</h3>
+          <span class="price-tag">$49 - $99</span>
+        </div>
+        <div class="product-body">
+          <p>Self-hosted WebRTC digital signage platform. Stream content to display screens in real-time with zero monthly SaaS fees.</p>
+          <ul class="product-features">
+            <li>WebRTC real-time browser-to-display streaming</li>
+            <li>Browser-based publisher dashboard</li>
+            <li>Automatic reconnection on network drops</li>
+            <li>Hardware-accelerated video decoding</li>
+            <li>Self-hosted: zero recurring costs</li>
+            <li>Ideal for churches, restaurants, retail</li>
+          </ul>
+          <div class="product-tech">Python &bull; WebRTC &bull; WebSocket &bull; Nginx &bull; HTML5</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section class="section-alt" id="templates">
+  <div class="container">
+    <div class="services-header">
+      <h2>Google Sheets Templates</h2>
+      <p>Professional automated spreadsheets with Apps Script power.</p>
+    </div>
+    <div class="templates-list">
+      <div class="template-item">
+        <div class="template-info">
+          <h4>Personal Budget Tracker</h4>
+          <p>Auto-categorization, spending alerts, rollover tracking, savings goals, pie and bar charts</p>
+        </div>
+        <div class="template-price">$15</div>
+      </div>
+      <div class="template-item">
+        <div class="template-info">
+          <h4>Freelancer Income &amp; Expense Tracker</h4>
+          <p>Invoice management, Schedule C categories, profit/loss by client, 1099 tracker, quarterly tax estimator</p>
+        </div>
+        <div class="template-price">$19</div>
+      </div>
+      <div class="template-item">
+        <div class="template-info">
+          <h4>Project Management Dashboard</h4>
+          <p>Task tracking with progress bars, deadline alerts, Gantt timeline generator, project health scores</p>
+        </div>
+        <div class="template-price">$19</div>
+      </div>
+      <div class="template-item">
+        <div class="template-info">
+          <h4>Content Calendar</h4>
+          <p>Multi-platform scheduling, content pipeline workflow, auto-reminders, analytics tracking</p>
+        </div>
+        <div class="template-price">$15</div>
+      </div>
+      <div class="template-item">
+        <div class="template-info">
+          <h4>Small Business CRM</h4>
+          <p>Contact management, deal pipeline tracking, follow-up reminders, activity logging, revenue forecasting</p>
+        </div>
+        <div class="template-price">$25</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section>
+  <div class="container">
+    <div class="services-header">
+      <h2>Technologies We Work With</h2>
+    </div>
+    <div class="tech-grid">
+      <span class="tech-pill">Google Apps Script</span>
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">PowerShell</span>
+      <span class="tech-pill">JavaScript</span>
+      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">React</span>
+      <span class="tech-pill">Swift / SwiftUI</span>
+      <span class="tech-pill">Telegram Bot API</span>
+      <span class="tech-pill">WebRTC</span>
+      <span class="tech-pill">REST APIs</span>
+      <span class="tech-pill">Google Sheets</span>
+      <span class="tech-pill">Google Cloud</span>
+      <span class="tech-pill">CloudKit</span>
+      <span class="tech-pill">Windows Server</span>
+      <span class="tech-pill">Nginx</span>
+      <span class="tech-pill">HTML / CSS</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-alt" id="faq">
+  <div class="container">
+    <div class="services-header">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does a typical project take?</div>
+        <div class="faq-a">Most Google Sheets automations are delivered in 3-7 days. Larger projects like bot systems or multi-platform integrations typically take 1-2 weeks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need technical knowledge to use your products?</div>
+        <div class="faq-a">No. All products include setup instructions written for non-technical users. Templates install with a one-click setup function. Consulting projects come with full documentation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I need changes after delivery?</div>
+        <div class="faq-a">Minor adjustments are included with every project. For significant scope changes, we provide a transparent quote for the additional work before proceeding.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you offer ongoing maintenance?</div>
+        <div class="faq-a">Our digital products are designed to run independently with zero maintenance. For custom consulting projects, ongoing support arrangements can be discussed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What payment methods do you accept?</div>
+        <div class="faq-a">Digital products are sold through our store (credit card, PayPal). Consulting services can be invoiced through Upwork, Fiverr, or direct invoice.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>Ready to Automate?</h2>
+    <p>Most automations are delivered in under a week. Let's talk about your project.</p>
+    <a href="mailto:peter@thewyattclan.com" class="btn btn-primary">Get in Touch</a>
+    <p style="margin-top:16px;font-size:13px;color:#555">peter@thewyattclan.com &bull; Also on Upwork and Fiverr</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>IT Automations &bull; AI-Powered Business Automation &bull; &copy; 2026 All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
