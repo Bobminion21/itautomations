@@ -1637,7 +1637,7 @@ section {
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.visible {
@@ -1648,7 +1648,7 @@ section {
 .reveal-left {
   opacity: 0;
   transform: translateX(-40px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal-left.visible {
@@ -1659,7 +1659,7 @@ section {
 .reveal-right {
   opacity: 0;
   transform: translateX(40px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal-right.visible {
@@ -1670,7 +1670,7 @@ section {
 .reveal-scale {
   opacity: 0;
   transform: scale(0.95);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal-scale.visible {
@@ -1682,7 +1682,7 @@ section {
 .stagger-children > * {
   opacity: 0;
   transform: translateY(24px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .stagger-children.visible > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
