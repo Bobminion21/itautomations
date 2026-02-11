@@ -97,10 +97,23 @@ function initScrollReveal() {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
     initGSAPAnimations();
+    // Force ScrollTrigger to recalculate positions after layout settles
+    requestAnimationFrame(() => ScrollTrigger.refresh());
   } else {
     // Fallback: IntersectionObserver
     initFallbackReveal();
   }
+
+  // Safety net: if any animated elements are still invisible after 2.5s, force them visible
+  setTimeout(() => {
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children > *').forEach(el => {
+      if (window.getComputedStyle(el).opacity === '0') {
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      }
+    });
+  }, 2500);
 }
 
 function initGSAPAnimations() {
@@ -436,10 +449,14 @@ document.querySelectorAll('a[href$=".html"]').forEach(link => {
   });
 });
 
-// Remove page transition on load
+// Remove page transition on load + refresh ScrollTrigger
 window.addEventListener('load', () => {
   const overlay = document.querySelector('.page-transition');
   if (overlay) {
     overlay.classList.remove('active');
+  }
+  // Refresh ScrollTrigger after all resources loaded (images etc may shift layout)
+  if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.refresh();
   }
 });
