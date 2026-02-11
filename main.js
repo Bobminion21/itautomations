@@ -137,88 +137,78 @@ function initGSAPAnimations() {
     }
   });
 
-  // Reveal elements on scroll (fromTo ensures explicit end state regardless of CSS)
+  // Reveal elements on scroll (using .to() like hero — animates FROM css opacity:0 TO 1)
   gsap.utils.toArray('.reveal').forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
       }
-    );
+    });
   });
 
   gsap.utils.toArray('.reveal-left').forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, x: -50 },
-      {
-        opacity: 1, x: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+    gsap.to(el, {
+      opacity: 1,
+      x: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
       }
-    );
+    });
   });
 
   gsap.utils.toArray('.reveal-right').forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, x: 50 },
-      {
-        opacity: 1, x: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+    gsap.to(el, {
+      opacity: 1,
+      x: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
       }
-    );
+    });
   });
 
   gsap.utils.toArray('.reveal-scale').forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, scale: 0.92 },
-      {
-        opacity: 1, scale: 1,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+    gsap.to(el, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
       }
-    );
+    });
   });
 
   // Stagger children
   gsap.utils.toArray('.stagger-children').forEach(container => {
     const children = container.children;
-    gsap.fromTo(children,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+    gsap.to(children, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
       }
-    );
+    });
   });
 
   // Stats counter animation
